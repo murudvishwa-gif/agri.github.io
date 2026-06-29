@@ -30,9 +30,13 @@ const setActiveLink = () => {
 
 if (menuToggle && navLinks) {
   setActiveLink();
+  navLinks.setAttribute('aria-hidden', 'true');
+
   const closeMobileNav = () => {
     navLinks.classList.remove('open');
     document.body.classList.remove('nav-open');
+    document.documentElement.classList.remove('nav-open');
+    navLinks.setAttribute('aria-hidden', 'true');
     menuToggle.setAttribute('aria-expanded', 'false');
     menuToggle.setAttribute('aria-label', 'Open navigation');
   };
@@ -41,11 +45,19 @@ if (menuToggle && navLinks) {
     const isOpen = navLinks.classList.toggle('open');
     menuToggle.setAttribute('aria-expanded', String(isOpen));
     menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+    navLinks.setAttribute('aria-hidden', String(!isOpen));
     document.body.classList.toggle('nav-open', isOpen);
+    document.documentElement.classList.toggle('nav-open', isOpen);
   });
+
   navLinks.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMobileNav);
   });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMobileNav();
+  });
+
   window.addEventListener('resize', () => {
     if (window.matchMedia('(min-width: 721px)').matches) {
       closeMobileNav();
