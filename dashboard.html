@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard | AgriNova</title>
+<meta content="Track crop yield, soil moisture, weather, and water usage from your AgriNova farm dashboard." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<a aria-label="Stackly home" class="brand stackly-brand" href="index.html">
+<img alt="Stackly Logo" class="stackly-logo" src="logo-dark.webp"/>
+</a>
+<button aria-expanded="false" aria-label="Open navigation" class="menu-toggle">
+<span></span><span></span><span></span>
+</button>
+<nav aria-label="Primary navigation" class="nav-links">
+<a href="index.html">Home</a>
+<a href="dashboard.html">Dashboard</a>
+<a href="demos.html">Demos</a>
+<a href="services.html">Services</a>
+<a href="shop.html">Shop</a>
+<a href="blog.html">Blog</a>
+<a href="pages.html">Pages</a>
+<a class="nav-login" href="login.html">Login</a>
+<a class="nav-cta" href="signup.html">Sign Up</a>
+</nav>
+</header>
+<main>
+<div class="dash-shell"><button aria-controls="dashSidebar" aria-expanded="false" class="dash-menu-toggle" type="button">Dashboard Menu</button>
+<!-- Sidebar -->
+<aside class="dash-sidebar reveal" id="dashSidebar">
+<div class="farmer">
+<img alt="Farmer profile" src="assets/images/unsplash-05-1500648767791-00dcc994a43e-w120.webp"/>
+<div>
+<strong>Ravi Kumar</strong>
+<span>Greenfield Farm</span>
+</div>
+</div>
+<nav aria-label="Dashboard navigation" class="dash-nav">
+<button aria-pressed="true" class="active" data-section="overview" type="button"><span class="ico">&#127807;</span> Overview</button>
+<button aria-pressed="false" data-section="crops" type="button"><span class="ico">&#127806;</span> Crops &amp; Yield</button>
+<button aria-pressed="false" data-section="water" type="button"><span class="ico">&#128167;</span> Water Usage</button>
+<button aria-pressed="false" data-section="soil" type="button"><span class="ico">&#129514;</span> Soil Health</button>
+<button aria-pressed="false" data-section="weather" type="button"><span class="ico">&#9728;</span> Weather</button>
+<button aria-pressed="false" data-section="inventory" type="button"><span class="ico">&#128230;</span> Inventory</button>
+<button aria-pressed="false" data-section="market" type="button"><span class="ico">&#8377;</span> Market Prices</button>
+<button aria-pressed="false" data-section="settings" type="button"><span class="ico">&#9881;</span> Settings</button>
+</nav>
+</aside>
+<!-- Main dashboard content -->
+<section class="dash-main">
+<div class="dash-header reveal">
+<div>
+<h1>Good morning, Ravi </h1>
+<p>Here's how Greenfield Farm is doing today, June 29.</p>
+</div>
+<div class="weather-pill">Sun 29 deg C - Sunny - Light breeze</div>
+</div>
+<div class="panel dashboard-detail-panel reveal" id="dashboard-details">
+<div class="panel-head">
+<div><h3 id="dashDetailTitle">Farm Overview</h3><p id="dashDetailIntro">A complete snapshot of farm health, active crop plans, irrigation, tasks, and alerts.</p></div>
+<span class="tag" id="dashDetailTag">Live dashboard</span>
+</div>
+<div class="dashboard-detail-grid" id="dashDetailGrid">
+<div class="detail-card"><h4>Today's priority</h4><p>Focus on tomato greenhouse pest inspection, west-zone irrigation, and market price review before harvest dispatch.</p></div>
+<div class="detail-card"><h4>Farm progress</h4><p>14 active fields are tracked with crop stage, moisture level, field health, and labour task completion.</p></div>
+<div class="detail-card"><h4>Recommended action</h4><p>Use drip irrigation for dry blocks, check pest traps twice daily, and update inventory after fertilizer usage.</p></div>
+</div>
+</div>
+<!-- Stat cards -->
+<div class="stat-grid">
+<div class="stat-card reveal">
+<div class="stat-top">
+<div class="stat-icon icon-leaf"></div>
+<span class="stat-trend trend-up">Up 6.2%</span>
+</div>
+<div class="stat-value"><span data-count="4.8" data-suffix=" t/ha">0</span></div>
+<div class="stat-label">Average crop yield</div>
+</div>
+<div class="stat-card reveal">
+<div class="stat-top">
+<div class="stat-icon icon-sky"></div>
+<span class="stat-trend trend-down">Down 3.1%</span>
+</div>
+<div class="stat-value"><span data-count="62" data-suffix="%">0</span></div>
+<div class="stat-label">Soil moisture (avg)</div>
+</div>
+<div class="stat-card reveal">
+<div class="stat-top">
+<div class="stat-icon icon-marigold"></div>
+<span class="stat-trend trend-up">Up 2 fields</span>
+</div>
+<div class="stat-value"><span data-count="14">0</span></div>
+<div class="stat-label">Active fields</div>
+</div>
+<div class="stat-card reveal">
+<div class="stat-top">
+<div class="stat-icon icon-tomato">Alert</div>
+<span class="stat-trend trend-down">2 new</span>
+</div>
+<div class="stat-value"><span data-count="3">0</span></div>
+<div class="stat-label">Fields needing attention</div>
+</div>
+</div>
+<!-- Yield chart + soil gauges -->
+<div class="dash-grid-2">
+<div class="panel reveal">
+<div class="panel-head">
+<h3>Yield trend - last 6 months</h3>
+<span class="tag">Tonnes / hectare</span>
+</div>
+<svg aria-label="Line chart showing crop yield trending upward over six months" height="220" role="img" viewBox="0 0 560 220" width="100%">
+<line stroke="#e8ddc8" stroke-width="2" x1="40" x2="40" y1="20" y2="190"></line>
+<line stroke="#e8ddc8" stroke-width="2" x1="40" x2="540" y1="190" y2="190"></line>
+<text fill="#6b5847" font-size="11" x="10" y="25">6</text>
+<text fill="#6b5847" font-size="11" x="10" y="80">4.5</text>
+<text fill="#6b5847" font-size="11" x="10" y="135">3</text>
+<text fill="#6b5847" font-size="11" x="14" y="194">0</text>
+<polyline fill="none" points="40,150 110,140 180,120 250,110 320,95 390,75 460,55 530,40" stroke="#3d8b5f" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></polyline>
+<polygon fill="url(#yieldGradient)" opacity="0.35" points="40,150 110,140 180,120 250,110 320,95 390,75 460,55 530,40 530,190 40,190"></polygon>
+<defs>
+<linearGradient id="yieldGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#3d8b5f"></stop>
+<stop offset="100%" stop-color="#3d8b5f" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<circle cx="40" cy="150" fill="#3d8b5f" r="5"></circle>
+<circle cx="110" cy="140" fill="#3d8b5f" r="5"></circle>
+<circle cx="180" cy="120" fill="#3d8b5f" r="5"></circle>
+<circle cx="250" cy="110" fill="#3d8b5f" r="5"></circle>
+<circle cx="320" cy="95" fill="#3d8b5f" r="5"></circle>
+<circle cx="390" cy="75" fill="#3d8b5f" r="5"></circle>
+<circle cx="460" cy="55" fill="#f4a933" r="5"></circle>
+<circle cx="530" cy="40" fill="#f4a933" r="6" stroke="#fff" stroke-width="2"></circle>
+<text fill="#6b5847" font-size="11" x="36" y="208">Jan</text>
+<text fill="#6b5847" font-size="11" x="106" y="208">Feb</text>
+<text fill="#6b5847" font-size="11" x="176" y="208">Mar</text>
+<text fill="#6b5847" font-size="11" x="246" y="208">Apr</text>
+<text fill="#6b5847" font-size="11" x="316" y="208">May</text>
+<text fill="#6b5847" font-size="11" x="386" y="208">Jun</text>
+<text fill="#6b5847" font-size="11" x="448" y="208">Jul</text>
+<text fill="#6b5847" font-size="11" x="518" y="208">Aug</text>
+</svg>
+<div class="chart-legend">
+<span><span class="legend-dot" style="background:#3d8b5f;"></span> Average yield</span>
+<span><span class="legend-dot" style="background:#f4a933;"></span> Latest harvest</span>
+</div>
+</div>
+<div class="panel reveal">
+<div class="panel-head">
+<h3>Soil moisture by field</h3>
+<span class="tag">Live</span>
+</div>
+<div class="gauge-row">
+<div class="gauge-item">
+<span class="gauge-label">North field</span>
+<div class="gauge-bar"><div class="gauge-fill" data-fill="78" style="width:0;background:#3d8b5f;"></div></div>
+<span class="gauge-pct">78%</span>
+</div>
+<div class="gauge-item">
+<span class="gauge-label">East paddock</span>
+<div class="gauge-bar"><div class="gauge-fill" data-fill="64" style="width:0;background:#3a8fb7;"></div></div>
+<span class="gauge-pct">64%</span>
+</div>
+<div class="gauge-item">
+<span class="gauge-label">South orchard</span>
+<div class="gauge-bar"><div class="gauge-fill" data-fill="41" style="width:0;background:#f4a933;"></div></div>
+<span class="gauge-pct">41%</span>
+</div>
+<div class="gauge-item">
+<span class="gauge-label">West greenhouse</span>
+<div class="gauge-bar"><div class="gauge-fill" data-fill="22" style="width:0;background:#e8593e;"></div></div>
+<span class="gauge-pct">22%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Field status + water usage + tasks -->
+<div class="dash-grid-2">
+<div class="panel reveal">
+<div class="panel-head">
+<h3>Field status</h3>
+<span class="tag">14 fields</span>
+</div>
+<div class="field-list">
+<div class="field-row">
+<span class="field-dot" style="background:#3d8b5f;"></span>
+<div><div class="field-name">North field - Wheat</div><div class="field-sub">12.4 ha - planted Mar 02</div></div>
+<span class="status-chip status-good">Healthy</span>
+</div>
+<div class="field-row">
+<span class="field-dot" style="background:#3a8fb7;"></span>
+<div><div class="field-name">East paddock - Rice</div><div class="field-sub">8.1 ha - planted Apr 18</div></div>
+<span class="status-chip status-good">Healthy</span>
+</div>
+<div class="field-row">
+<span class="field-dot" style="background:#f4a933;"></span>
+<div><div class="field-name">South orchard - Mango</div><div class="field-sub">5.6 ha - low moisture</div></div>
+<span class="status-chip status-watch">Watch</span>
+</div>
+<div class="field-row">
+<span class="field-dot" style="background:#e8593e;"></span>
+<div><div class="field-name">West greenhouse - Tomato</div><div class="field-sub">2.2 ha - pest alert</div></div>
+<span class="status-chip status-alert">Action needed</span>
+</div>
+<div class="field-row">
+<span class="field-dot" style="background:#3d8b5f;"></span>
+<div><div class="field-name">Hillside plot - Vegetables</div><div class="field-sub">3.9 ha - planted May 05</div></div>
+<span class="status-chip status-good">Healthy</span>
+</div>
+</div>
+</div>
+<div class="panel reveal">
+<div class="panel-head">
+<h3>Today's tasks</h3>
+<span class="tag">4 pending</span>
+</div>
+<div class="task-list">
+<div class="task-item">
+<div class="task-check"></div>
+<div><p>Inspect tomato greenhouse for pest spread</p><span class="task-time">High priority - 9:00 AM</span></div>
+</div>
+<div class="task-item">
+<div class="task-check done"></div>
+<div><p>Irrigate south orchard for 40 minutes</p><span class="task-time">Completed - 7:30 AM</span></div>
+</div>
+<div class="task-item">
+<div class="task-check"></div>
+<div><p>Apply nitrogen top-dressing to wheat field</p><span class="task-time">Medium priority - 2:00 PM</span></div>
+</div>
+<div class="task-item">
+<div class="task-check"></div>
+<div><p>Review weekly market prices before selling</p><span class="task-time">Low priority - Today</span></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Water usage bar chart -->
+<div class="panel reveal">
+<div class="panel-head">
+<h3>Water usage this week</h3>
+<span class="tag">Litres x 1,000</span>
+</div>
+<svg aria-label="Bar chart of daily water usage across the week" height="200" role="img" viewBox="0 0 560 200" width="100%">
+<line stroke="#e8ddc8" stroke-width="2" x1="40" x2="540" y1="170" y2="170"></line>
+<g fill="#6b5847" font-size="11" text-anchor="middle">
+<rect fill="#3a8fb7" height="80" rx="8" width="40" x="50" y="90"></rect>
+<text x="70" y="184">Mon</text>
+<rect fill="#3a8fb7" height="110" rx="8" width="40" x="115" y="60"></rect>
+<text x="135" y="184">Tue</text>
+<rect fill="#3a8fb7" height="70" rx="8" width="40" x="180" y="100"></rect>
+<text x="200" y="184">Wed</text>
+<rect fill="#f4a933" height="130" rx="8" width="40" x="245" y="40"></rect>
+<text x="265" y="184">Thu</text>
+<rect fill="#3a8fb7" height="95" rx="8" width="40" x="310" y="75"></rect>
+<text x="330" y="184">Fri</text>
+<rect fill="#3a8fb7" height="60" rx="8" width="40" x="375" y="110"></rect>
+<text x="395" y="184">Sat</text>
+<rect fill="#3d8b5f" height="40" rx="8" width="40" x="440" y="130"></rect>
+<text x="460" y="184">Sun</text>
+</g>
+</svg>
+<div class="chart-legend">
+<span><span class="legend-dot" style="background:#3a8fb7;"></span> Normal usage</span>
+<span><span class="legend-dot" style="background:#f4a933;"></span> Peak day</span>
+<span><span class="legend-dot" style="background:#3d8b5f;"></span> Below average</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<footer class="footer">
+<div class="footer-inner">
+<div class="footer-card">
+<a aria-label="Stackly home" class="footer-brand stackly-brand" href="index.html">
+<img alt="Stackly Logo" class="stackly-logo" src="logo-dark.webp"/>
+</a>
+<p>Smart farming, sustainable growth, and modern organic experiences.</p>
+<div aria-label="Social media links" class="social-links">
+<a aria-label="Facebook" href="404page.html">f</a>
+<a aria-label="Instagram" href="404page.html">ig</a>
+<a aria-label="Twitter" href="404page.html">x</a>
+<a aria-label="LinkedIn" href="404page.html">in</a>
+</div>
+</div>
+<div class="footer-card">
+<h4>Explore</h4>
+<a href="dashboard.html">Dashboard</a>
+<a href="demos.html">Demos</a>
+<a href="services.html">Services</a>
+<a href="shop.html">Shop</a>
+</div>
+<div class="footer-card">
+<h4>Account</h4>
+<a href="login.html">Login</a>
+<a href="signup.html">Sign Up</a>
+</div>
+<div class="footer-card">
+<h4>Contact</h4>
+<a href="404page.html">hello@stackly.com</a>
+<a href="404page.html">+1 (234) 567-890</a>
+<a href="404page.html">Support Center</a>
+</div>
+</div>
+<div class="footer-bottom">
+<p>(c) 2026 Stackly. Growing smarter every season.</p>
+</div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
