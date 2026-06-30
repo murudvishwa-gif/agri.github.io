@@ -200,17 +200,26 @@ const dashDetailGrid = document.getElementById('dashDetailGrid');
 const dashSectionControls = document.querySelectorAll('[data-section]');
 const dashboardOverviewContent = document.querySelectorAll('.dashboard-overview-content');
 const logoutButton = document.getElementById('logoutButton');
+const headerLogoutButtons = document.querySelectorAll('[data-dashboard-logout]');
 
-if (logoutButton) {
-  logoutButton.addEventListener('click', () => {
-    window.location.href = 'login.html';
-  });
-}
+const logoutDashboard = () => {
+  window.location.href = 'login.html';
+};
 
-dashSectionControls.forEach((link) => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const section = link.dataset.section || 'overview';
+if (logoutButton) logoutButton.addEventListener('click', logoutDashboard);
+headerLogoutButtons.forEach((button) => button.addEventListener('click', logoutDashboard));
+
+const closeDashSidebar = () => {
+  if (dashSidebar && window.matchMedia('(max-width: 1080px)').matches) {
+    dashSidebar.classList.remove('open');
+    if (dashMenuToggle) {
+      dashMenuToggle.setAttribute('aria-expanded', 'false');
+      dashMenuToggle.textContent = closedDashMenuLabel;
+    }
+  }
+};
+
+const activateDashboardSection = (section = 'overview', options = {}) => {
     const data = dashboardDetails[section];
     if (data && dashDetailTitle && dashDetailIntro && dashDetailTag && dashDetailGrid) {
       dashDetailTitle.textContent = data.title;
@@ -221,18 +230,63 @@ dashSectionControls.forEach((link) => {
         item.classList.remove('active');
         item.setAttribute('aria-pressed', 'false');
       });
-      link.classList.add('active');
-      link.setAttribute('aria-pressed', 'true');
+      const activeControl = document.querySelector(`[data-section="${section}"]`);
+      if (activeControl) {
+        activeControl.classList.add('active');
+        activeControl.setAttribute('aria-pressed', 'true');
+      }
       dashboardOverviewContent.forEach((item) => {
         item.hidden = section !== 'overview';
       });
     }
-    if (dashSidebar && window.matchMedia('(max-width: 1080px)').matches) {
-      dashSidebar.classList.remove('open');
-      if (dashMenuToggle) {
-        dashMenuToggle.setAttribute('aria-expanded', 'false');
-        dashMenuToggle.textContent = closedDashMenuLabel;
-      }
+    closeDashSidebar();
+    if (options.scroll && document.getElementById('dashboard-details')) {
+      document.getElementById('dashboard-details').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+};
+
+dashSectionControls.forEach((link) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    activateDashboardSection(link.dataset.section || 'overview', { scroll: true });
   });
+});
+
+// ---------- Dashboard header notification and profile menus ----------
+const headerMenuToggles = document.querySelectorAll('[data-menu-toggle]');
+const headerMenuPanels = document.querySelectorAll('[data-menu-panel]');
+
+const closeHeaderMenus = (except = '') => {
+  headerMenuPanels.forEach((panel) => {
+    const name = panel.dataset.menuPanel;
+    const isExcept = name === except;
+    panel.classList.toggle('open', isExcept);
+    const toggle = document.querySelector(`[data-menu-toggle="${name}"]`);
+    if (toggle) toggle.setAttribute('aria-expanded', String(isExcept));
+  });
+};
+
+headerMenuToggles.forEach((toggle) => {
+  toggle.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const name = toggle.dataset.menuToggle;
+    const panel = document.querySelector(`[data-menu-panel="${name}"]`);
+    const willOpen = panel && !panel.classList.contains('open');
+    closeHeaderMenus(willOpen ? name : '');
+  });
+});
+
+document.querySelectorAll('[data-section-jump]').forEach((button) => {
+  button.addEventListener('click', () => {
+    closeHeaderMenus();
+    activateDashboardSection(button.dataset.sectionJump || 'overview', { scroll: true });
+  });
+});
+
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.header-menu')) closeHeaderMenus();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeHeaderMenus();
 });

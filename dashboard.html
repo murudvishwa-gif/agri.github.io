@@ -12,24 +12,44 @@
 <link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
-<header class="topbar">
-<a aria-label="Stackly home" class="brand stackly-brand" href="index.html">
-<img alt="Stackly Logo" class="stackly-logo" src="assets/image/pic1.webp"/>
+<header class="topbar dashboard-topbar">
+<a aria-label="AgriNova home" class="brand stackly-brand" href="index.html">
+<img alt="AgriNova Logo" class="stackly-logo" src="assets/image/pic1.webp"/>
 </a>
-<button aria-expanded="false" aria-label="Open navigation" class="menu-toggle">
-<span></span><span></span><span></span>
+<div class="dashboard-actions">
+<div class="header-menu">
+<button aria-expanded="false" aria-haspopup="true" aria-label="Notifications" class="header-icon-button" data-menu-toggle="notifications" type="button">
+<span aria-hidden="true">&#128276;</span>
+<span class="notify-dot"></span>
 </button>
-<nav aria-label="Primary navigation" class="nav-links">
-<a href="index.html">Home</a>
-<a href="dashboard.html">Dashboard</a>
-<a href="demos.html">Demos</a>
-<a href="services.html">Services</a>
-<a href="shop.html">Shop</a>
-<a href="blog.html">Blog</a>
-<a href="pages.html">Pages</a>
-<a class="nav-login" href="login.html">Login</a>
-<a class="nav-cta" href="signup.html">Sign Up</a>
-</nav>
+<div class="header-dropdown notification-dropdown" data-menu-panel="notifications">
+<div class="dropdown-head">
+<strong>Notifications</strong>
+<span>3 new</span>
+</div>
+<button class="notification-item" data-section-jump="water" type="button"><span>Low moisture</span><small>West greenhouse needs irrigation check.</small></button>
+<button class="notification-item" data-section-jump="inventory" type="button"><span>Inventory reminder</span><small>Nitrogen fertilizer stock is running low.</small></button>
+<button class="notification-item" data-section-jump="market" type="button"><span>Market update</span><small>Tomato prices changed this morning.</small></button>
+</div>
+</div>
+<div class="header-menu">
+<button aria-expanded="false" aria-haspopup="true" aria-label="Profile menu" class="header-profile-button" data-menu-toggle="profile" type="button">
+<img alt="Ravi Kumar profile" src="assets/image/pic12.webp"/>
+</button>
+<div class="header-dropdown profile-dropdown" data-menu-panel="profile">
+<div class="profile-summary">
+<img alt="Ravi Kumar profile" src="assets/image/pic12.webp"/>
+<div>
+<strong>Ravi Kumar</strong>
+<span>Greenfield Farm</span>
+</div>
+</div>
+<button data-section-jump="profile" type="button">View profile</button>
+<button data-section-jump="settings" type="button">Settings</button>
+<button data-dashboard-logout type="button">Logout</button>
+</div>
+</div>
+</div>
 </header>
 <main>
 <div class="dash-shell"><button aria-controls="dashSidebar" aria-expanded="false" class="dash-menu-toggle" type="button">Dashboard Menu</button>
@@ -319,12 +339,12 @@
 </div>
 </div>
 <div class="footer-card">
-<h4>Explore</h4>
-<a href="index.html">Home</a>
-<a href="demos.html">Demos</a>
-<a href="services.html">Services</a>
-<a href="shop.html">Shop</a>
-<a href="blog.html">Blog</a>
+<h4>Dashboard</h4>
+<a href="#dashboard-details">Farm Overview</a>
+<a href="#dashboard-details">Crops &amp; Yield</a>
+<a href="#dashboard-details">Water Usage</a>
+<a href="#dashboard-details">Soil Health</a>
+<a href="#dashboard-details">Weather</a>
 </div>
 <div class="footer-card">
 <h4>Resources</h4>
@@ -347,7 +367,6 @@
 <a href="login.html">Login</a>
 <a href="forgot-password.html">Forgot Password</a>
 <a href="signup.html">Sign Up</a>
-<a href="pages.html">All Pages</a>
 <a href="404page.html">Help Center</a>
 <a href="404page.html">hello@stackly.com</a>
 </div>
