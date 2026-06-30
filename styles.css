@@ -330,6 +330,23 @@ a.info-card:hover, .content-card:hover {
 .dash-sidebar .farmer img { width: 2.8rem; height: 2.8rem; border-radius: 50%; object-fit: cover; }
 .dash-sidebar .farmer strong { display: block; font-size: 0.92rem; }
 .dash-sidebar .farmer span { font-size: 0.78rem; color: var(--ink-soft); }
+.profile-button {
+ width: 100%;
+ border: 0;
+ background: transparent;
+ color: inherit;
+ font: inherit;
+ text-align: left;
+ cursor: pointer;
+ border-radius: 14px;
+ transition: background-color 180ms ease, transform 180ms ease;
+}
+.profile-button:hover,
+.profile-button.active {
+ background: var(--leaf-light);
+ transform: translateY(-1px);
+}
+.profile-button.active strong { color: var(--leaf-deep); }
 .dash-nav { display: grid; gap: 0.25rem; }
 .dash-nav button {
  display: flex; align-items: center; gap: 0.7rem; padding: 0.7rem 0.8rem; border-radius: 12px;
@@ -339,6 +356,29 @@ a.info-card:hover, .content-card:hover {
 .dash-nav button:hover { background: var(--leaf-light); color: var(--leaf-deep); }
 .dash-nav button.active { background: var(--leaf); color: var(--paper); }
 .dash-nav .ico { width: 1.3rem; text-align: center; }
+.logout-button {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 0.55rem;
+ width: 100%;
+ margin-top: 1rem;
+ padding: 0.78rem 0.9rem;
+ border: 1px solid rgba(232, 89, 62, 0.32);
+ border-radius: 12px;
+ background: var(--tomato-light);
+ color: var(--tomato);
+ font-family: inherit;
+ font-size: 0.92rem;
+ font-weight: 800;
+ cursor: pointer;
+ transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+.logout-button:hover {
+ background: var(--tomato);
+ color: var(--paper);
+ transform: translateY(-1px);
+}
 
 .dash-main { display: grid; gap: 1.4rem; }
 .dash-header {

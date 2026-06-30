@@ -34,9 +34,9 @@
 <div class="hero-content reveal">
 <p class="eyebrow">Page not found</p>
 <h1>404</h1>
-<p class="lead">The page you are looking for is not available. Go back home and continue exploring AgriNova.</p>
+<p class="lead">The page you are looking for is not available. Go back and continue exploring AgriNova.</p>
 <div class="hero-actions">
-<a class="btn btn-primary" href="index.html">Go Back Home</a>
+<button class="btn btn-primary" onclick="if (window.history.length > 1) { window.history.back(); } else { window.location.href='index.html'; }" type="button">Go Back</button>
 <a class="btn btn-secondary" href="contact.html">Contact Support</a>
 </div>
 </div>

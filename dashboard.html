@@ -35,13 +35,13 @@
 <div class="dash-shell"><button aria-controls="dashSidebar" aria-expanded="false" class="dash-menu-toggle" type="button">Dashboard Menu</button>
 <!-- Sidebar -->
 <aside class="dash-sidebar reveal" id="dashSidebar">
-<div class="farmer">
+<button aria-pressed="false" class="farmer profile-button" data-section="profile" type="button">
 <img alt="Farmer profile" src="assets/image/pic12.webp"/>
 <div>
 <strong>Ravi Kumar</strong>
 <span>Greenfield Farm</span>
 </div>
-</div>
+</button>
 <nav aria-label="Dashboard navigation" class="dash-nav">
 <button aria-pressed="true" class="active" data-section="overview" type="button"><span class="ico">&#127807;</span> Overview</button>
 <button aria-pressed="false" data-section="crops" type="button"><span class="ico">&#127806;</span> Crops &amp; Yield</button>
@@ -52,6 +52,7 @@
 <button aria-pressed="false" data-section="market" type="button"><span class="ico">&#8377;</span> Market Prices</button>
 <button aria-pressed="false" data-section="settings" type="button"><span class="ico">&#9881;</span> Settings</button>
 </nav>
+<button class="logout-button" id="logoutButton" type="button"><span class="ico">&#10162;</span> Logout</button>
 </aside>
 <!-- Main dashboard content -->
 <section class="dash-main">
@@ -63,7 +64,7 @@
 </div>
 <div class="weather-pill">Sunny - 29 deg C - Light breeze</div>
 </div>
-<div class="dashboard-display reveal">
+<div class="dashboard-display dashboard-overview-content reveal">
 <div class="display-card featured">
 <span>Today focus</span>
 <strong>3 priority actions</strong>
@@ -97,7 +98,7 @@
 </div>
 </div>
 <!-- Stat cards -->
-<div class="stat-grid">
+<div class="stat-grid dashboard-overview-content">
 <div class="stat-card reveal">
 <div class="stat-top">
 <div class="stat-icon icon-leaf"></div>
@@ -132,7 +133,7 @@
 </div>
 </div>
 <!-- Yield chart + soil gauges -->
-<div class="dash-grid-2">
+<div class="dash-grid-2 dashboard-overview-content">
 <div class="panel reveal">
 <div class="panel-head">
 <h3>Yield trend - last 6 months</h3>
@@ -205,7 +206,7 @@
 </div>
 </div>
 <!-- Field status + water usage + tasks -->
-<div class="dash-grid-2">
+<div class="dash-grid-2 dashboard-overview-content">
 <div class="panel reveal">
 <div class="panel-head">
 <h3>Field status</h3>
@@ -239,7 +240,7 @@
 </div>
 </div>
 </div>
-<div class="panel reveal">
+<div class="panel dashboard-overview-content reveal">
 <div class="panel-head">
 <h3>Today's tasks</h3>
 <span class="tag">4 pending</span>
@@ -265,7 +266,7 @@
 </div>
 </div>
 <!-- Water usage bar chart -->
-<div class="panel reveal">
+<div class="panel dashboard-overview-content reveal">
 <div class="panel-head">
 <h3>Water usage this week</h3>
 <span class="tag">Litres x 1,000</span>

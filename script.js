@@ -110,6 +110,15 @@ if (dashMenuToggle && dashSidebar) {
 }
 
 const dashboardDetails = {
+  profile: {
+    title: 'Profile', tag: 'Farmer account',
+    intro: 'Review the farmer profile connected to Greenfield Farm and keep account details ready for team coordination.',
+    cards: [
+      ['Farmer', 'Ravi Kumar manages Greenfield Farm with dashboard access for crop tasks, reports, and seasonal planning.'],
+      ['Farm details', 'Primary location, crop area, preferred language, and contact information can be maintained from this profile.'],
+      ['Account status', 'Profile access is active. Use logout when leaving the dashboard on a shared device.']
+    ]
+  },
   overview: {
     title: 'Farm Overview', tag: 'Live dashboard',
     intro: 'A complete snapshot of Greenfield Farm with crop health, irrigation, labour tasks, alerts, and harvest planning in one place.',
@@ -188,7 +197,15 @@ const dashDetailTitle = document.getElementById('dashDetailTitle');
 const dashDetailIntro = document.getElementById('dashDetailIntro');
 const dashDetailTag = document.getElementById('dashDetailTag');
 const dashDetailGrid = document.getElementById('dashDetailGrid');
-const dashSectionControls = document.querySelectorAll('.dash-nav [data-section]');
+const dashSectionControls = document.querySelectorAll('[data-section]');
+const dashboardOverviewContent = document.querySelectorAll('.dashboard-overview-content');
+const logoutButton = document.getElementById('logoutButton');
+
+if (logoutButton) {
+  logoutButton.addEventListener('click', () => {
+    window.location.href = 'login.html';
+  });
+}
 
 dashSectionControls.forEach((link) => {
   link.addEventListener('click', (e) => {
@@ -206,6 +223,9 @@ dashSectionControls.forEach((link) => {
       });
       link.classList.add('active');
       link.setAttribute('aria-pressed', 'true');
+      dashboardOverviewContent.forEach((item) => {
+        item.hidden = section !== 'overview';
+      });
     }
     if (dashSidebar && window.matchMedia('(max-width: 1080px)').matches) {
       dashSidebar.classList.remove('open');
