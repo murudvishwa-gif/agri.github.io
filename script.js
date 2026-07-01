@@ -156,13 +156,20 @@ document.querySelectorAll('.task-check').forEach((box) => {
 // ---------- Dashboard mobile hamburger and working dashboard sections ----------
 const dashMenuToggle = document.querySelector('.dash-menu-toggle');
 const dashSidebar = document.querySelector('.dash-sidebar');
-const closedDashMenuLabel = 'Dashboard Menu';
-const openDashMenuLabel = 'Close Dashboard Menu';
+const closedDashMenuLabel = 'Open dashboard menu';
+const openDashMenuLabel = 'Close dashboard menu';
+const setDashMenuState = (isOpen) => {
+  if (!dashMenuToggle) return;
+  dashMenuToggle.setAttribute('aria-expanded', String(isOpen));
+  dashMenuToggle.setAttribute('aria-label', isOpen ? openDashMenuLabel : closedDashMenuLabel);
+  if (!dashMenuToggle.classList.contains('dashboard-header-menu-toggle')) {
+    dashMenuToggle.textContent = isOpen ? openDashMenuLabel : closedDashMenuLabel;
+  }
+};
 if (dashMenuToggle && dashSidebar) {
   dashMenuToggle.addEventListener('click', () => {
     const isOpen = dashSidebar.classList.toggle('open');
-    dashMenuToggle.setAttribute('aria-expanded', String(isOpen));
-    dashMenuToggle.textContent = isOpen ? openDashMenuLabel : closedDashMenuLabel;
+    setDashMenuState(isOpen);
   });
 }
 
@@ -278,10 +285,7 @@ headerLogoutButtons.forEach((button) => button.addEventListener('click', logoutD
 const closeDashSidebar = () => {
   if (dashSidebar && window.matchMedia('(max-width: 1080px)').matches) {
     dashSidebar.classList.remove('open');
-    if (dashMenuToggle) {
-      dashMenuToggle.setAttribute('aria-expanded', 'false');
-      dashMenuToggle.textContent = closedDashMenuLabel;
-    }
+    setDashMenuState(false);
   }
 };
 

@@ -49,10 +49,15 @@
 <button data-dashboard-logout type="button">Logout</button>
 </div>
 </div>
+<button aria-controls="dashSidebar" aria-expanded="false" aria-label="Open dashboard menu" class="dash-menu-toggle dashboard-header-menu-toggle" type="button">
+<span aria-hidden="true"></span>
+<span aria-hidden="true"></span>
+<span aria-hidden="true"></span>
+</button>
 </div>
 </header>
 <main>
-<div class="dash-shell"><button aria-controls="dashSidebar" aria-expanded="false" class="dash-menu-toggle" type="button">Dashboard Menu</button>
+<div class="dash-shell">
 <!-- Sidebar -->
 <aside class="dash-sidebar reveal" id="dashSidebar">
 <button aria-pressed="false" class="farmer profile-button" data-section="profile" type="button">
@@ -319,6 +324,6 @@
 </section>
 </div>
 </main>
-<script src="script.js?v=20260701-logo-middle"></script>
+<script src="script.js?v=20260701-header-menu"></script>
 </body>
 </html>
