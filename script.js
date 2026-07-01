@@ -318,6 +318,18 @@ dashSectionControls.forEach((link) => {
   });
 });
 
+const dashboardBrandLink = document.querySelector('.dashboard-topbar .brand');
+if (dashboardBrandLink) {
+  dashboardBrandLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    activateDashboardSection('overview');
+    const dashboardMiddle = document.getElementById('dashboard-details');
+    if (dashboardMiddle) {
+      dashboardMiddle.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+}
+
 // ---------- Dashboard header notification and profile menus ----------
 const headerMenuToggles = document.querySelectorAll('[data-menu-toggle]');
 const headerMenuPanels = document.querySelectorAll('[data-menu-panel]');

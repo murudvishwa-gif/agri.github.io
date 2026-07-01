@@ -63,6 +63,13 @@ h1, h2, h3, .display {
  border-bottom: 1px solid var(--line);
 }
 .brand { display: flex; align-items: center; gap: 0.7rem; font-weight: 800; }
+.dashboard-logo-button {
+ background: none;
+ border: 0;
+ color: inherit;
+ cursor: pointer;
+ padding: 0;
+}
 .stackly-logo { width: 10.8rem; height: auto; }
 .nav-links { display: flex; flex-wrap: wrap; gap: 0.3rem; color: var(--ink-soft); font-weight: 600; font-size: 0.94rem; }
 .nav-links a {
