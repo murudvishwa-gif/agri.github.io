@@ -65,6 +65,63 @@ if (menuToggle && navLinks) {
   });
 }
 
+// ---------- Auth name handoff ----------
+const getStoredUserName = () => {
+  try {
+    return localStorage.getItem('agrinovaUserName') || '';
+  } catch (error) {
+    return '';
+  }
+};
+
+const setStoredUserName = (name) => {
+  try {
+    localStorage.setItem('agrinovaUserName', name);
+  } catch (error) {
+    // The dashboard can still use the current form value if storage is unavailable.
+  }
+};
+
+const cleanDisplayName = (name) => name.trim().replace(/\s+/g, ' ');
+
+const nameFromEmail = (email) => {
+  const emailName = email.split('@')[0] || 'User';
+  return cleanDisplayName(emailName.replace(/[._-]+/g, ' '));
+};
+
+document.querySelectorAll('[data-auth-form]').forEach((form) => {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formType = form.dataset.authForm;
+    const nameInput = form.querySelector('[data-auth-name]');
+    const emailInput = form.querySelector('input[type="email"]');
+    const savedName = getStoredUserName();
+    const enteredName = nameInput ? cleanDisplayName(nameInput.value) : '';
+    const fallbackName = emailInput ? nameFromEmail(emailInput.value) : 'User';
+    const displayName = formType === 'signup' ? enteredName : (savedName || fallbackName);
+
+    setStoredUserName(displayName || 'User');
+    window.location.href = 'dashboard.html';
+  });
+});
+
+const userNameTargets = document.querySelectorAll('[data-user-name]');
+const userFirstNameTargets = document.querySelectorAll('[data-user-first-name]');
+const userInitialTargets = document.querySelectorAll('[data-user-initial]');
+const dashboardUserName = cleanDisplayName(getStoredUserName()) || 'User';
+const dashboardFirstName = dashboardUserName.split(' ')[0] || 'User';
+const dashboardInitial = dashboardUserName.charAt(0).toUpperCase() || 'U';
+
+userNameTargets.forEach((item) => {
+  item.textContent = dashboardUserName;
+});
+userFirstNameTargets.forEach((item) => {
+  item.textContent = dashboardFirstName;
+});
+userInitialTargets.forEach((item) => {
+  item.textContent = dashboardInitial;
+});
+
 // ---------- Dashboard: animate gauge bars & stat counters on view ----------
 const gaugeFills = document.querySelectorAll('.gauge-fill');
 gaugeFills.forEach((bar) => {
@@ -114,7 +171,7 @@ const dashboardDetails = {
     title: 'Profile', tag: 'Farmer account',
     intro: 'Review the farmer profile connected to Greenfield Farm and keep account details ready for team coordination.',
     cards: [
-      ['Farmer', 'Ravi Kumar manages Greenfield Farm with dashboard access for crop tasks, reports, and seasonal planning.'],
+      ['Farmer', 'User manages Greenfield Farm with dashboard access for crop tasks, reports, and seasonal planning.'],
       ['Farm details', 'Primary location, crop area, preferred language, and contact information can be maintained from this profile.'],
       ['Account status', 'Profile access is active. Use logout when leaving the dashboard on a shared device.']
     ]
@@ -193,6 +250,8 @@ const dashboardDetails = {
   }
 };
 
+dashboardDetails.profile.cards[0][1] = `${dashboardUserName} manages Greenfield Farm with dashboard access for crop tasks, reports, and seasonal planning.`;
+
 const dashDetailTitle = document.getElementById('dashDetailTitle');
 const dashDetailIntro = document.getElementById('dashDetailIntro');
 const dashDetailTag = document.getElementById('dashDetailTag');
@@ -201,6 +260,13 @@ const dashSectionControls = document.querySelectorAll('[data-section]');
 const dashboardOverviewContent = document.querySelectorAll('.dashboard-overview-content');
 const logoutButton = document.getElementById('logoutButton');
 const headerLogoutButtons = document.querySelectorAll('[data-dashboard-logout]');
+const escapeHTML = (value) => value.replace(/[&<>"']/g, (char) => ({
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;'
+})[char]);
 
 const logoutDashboard = () => {
   window.location.href = 'login.html';
@@ -225,7 +291,7 @@ const activateDashboardSection = (section = 'overview', options = {}) => {
       dashDetailTitle.textContent = data.title;
       dashDetailIntro.textContent = data.intro;
       dashDetailTag.textContent = data.tag;
-      dashDetailGrid.innerHTML = data.cards.map(([title, text]) => `<div class="detail-card"><h4>${title}</h4><p>${text}</p></div>`).join('');
+      dashDetailGrid.innerHTML = data.cards.map(([title, text]) => `<div class="detail-card"><h4>${escapeHTML(title)}</h4><p>${escapeHTML(text)}</p></div>`).join('');
       dashSectionControls.forEach((item) => {
         item.classList.remove('active');
         item.setAttribute('aria-pressed', 'false');
